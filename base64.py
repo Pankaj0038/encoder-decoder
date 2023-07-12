@@ -1,35 +1,34 @@
 #!/usr/bin/python
 
 class base64:
-    '''def greet(fx):
-        def mfx(**kwargs):
+    def greet(fx):
+        def mfx(*args):
             print("Hello, I am Gumnami , nice to see you here using my tool :)")
-            fx(*args,**kwargs)
-            print("thanks for appreciating me!,have a good day")
-        return mfx'''
+            fx(*args)
+        return mfx
     
-    #@greet
+    
     def encode(flag):
         char = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
         enc=''
         binary_string =''
         for letter in flag:
             binary_string += "{0:08b}".format(ord(letter))
-        print(binary_string)
+        #print(binary_string)
         chunks = [binary_string[i:i+6] for i in range(0,len(binary_string),6)]
         for i in range(len(chunks)):
             if len(chunks[i]) < 6:
-                print(len(chunks[i]))
+                #print(len(chunks[i]))
                 x = 6 - len(chunks[i])
-                print(x)
+                #print(x)
                 chunks[i] = "{0:06b}".format(int(chunks[i],2) << x)
-        print(chunks)
+        #print(chunks)
         encoded_string = ''
         for i in chunks:
             encoded_string += char[int(i,2)]
-        print(encoded_string)
+        print("here is your encoded string: " ,encoded_string)
     
-    #@greet
+    
     def decode(enc):
         char = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
         li = []
@@ -49,19 +48,22 @@ class base64:
             flag += chr(int(i,2))
         print(flag)
 
+    @greet
+    def choice():
+        a = int(input('''1> Encode a string : \n2> decode a string: \nEnter your choice: ''' ))
+        match a:
+            case 1:
+                flag_to_encode = str(input("Enter the string to encode: "))
+                base64.encode(flag_to_encode)
+
+            case 2:
+                enc_to_decode = str(input("Enter the string to decode: "))
+                base64.decode(enc_to_decode)
+
+            case _:
+                print("invalid choice choice!")
 
 
-a = int(input("Enter your choice encode=1/decode=2): "))
 
-match a:
-    case 1:
-        flag_to_encode = str(input("Enter the string to encode: "))
-        base64.encode(flag_to_encode)
 
-    case 2:
-        enc_to_decode = str(input("Enter the string to decode: "))
-        base64.decode(enc_to_decode)
-
-    case _:
-        print("enter a correct choice!")
-
+base64.choice()
