@@ -36,14 +36,14 @@ class base64:
             for j in range(0,len(char)):
                 if enc[i] == char[j]:
                     li.append(str(j))
-        print(li)
+        #print(li)
         binary = ''
         flag =''
         for num in li:
             binary += "{0:06b}".format(int(num))
-        print(binary)
+        #print(binary)
         chunks = [binary[i:i+8] for i in range(0,len(binary),8)]
-        print(chunks)
+        #print(chunks)
         for i in chunks:
             flag += chr(int(i,2))
         print(flag)
